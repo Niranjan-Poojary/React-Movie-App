@@ -8,14 +8,28 @@ class MovieCard extends Component{
             plot:"Supernatural powers shown in the movie",
             price:"199",
             rating:"8.9",
+            stars:0
         }
         // this.addStars=this.addStars.bind(this);
     }
     addStars=()=>{
-        console.log("this:",this);
+        //using setState function(method 1)
+        // this.setState({
+        //     stars:this.state.stars +0.5
+        // })
+
+        //Method 2
+        this.setState((prevState)=>{
+            return{
+                stars:prevState.stars +0.5
+            }
+        })
+        
+        // this.state.stars +=0.5;
+        // console.log("this.state.stars:",this.state.stars);
     }
     render(){
-        const {title,plot,price,rating}=this.state
+        const {title,plot,price,rating,stars}=this.state
        return (
        <div className="main">
             <div className="movie-card">
@@ -36,7 +50,7 @@ class MovieCard extends Component{
                                className="stars"/>
                            <img className="str-btn" alt="increase" src="https://cdn-icons-png.flaticon.com/128/992/992651.png"
                            onClick={this.addStars}/>
-                           <span>0</span>
+                           <span className="starCount">{stars}</span>
                              </div> 
                              
                         <button className="favourite-btn">Favourite</button>
